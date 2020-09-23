@@ -6,46 +6,23 @@ import org.junit.Test;
 import java.util.Scanner;
 
 public class Bai5 {
+    Bai5Method bai5Method = new Bai5Method();
+
     @Test
-    public void shouldAnswerWithTrue() {
-        int so = 5;
-        boolean ketQuaMongMuon = true;
-        Assert.assertEquals(ketQuaMongMuon, checkFibonacci(5));
+    public void happyCase() {
+        int number = 5;
+        boolean expectedResult = true;
+        boolean actualResult = bai5Method.checkFibonacci(5);
+        Assert.assertTrue(actualResult);
+    }
+
+    @Test
+    public void exceptionCase() {
+        int number = 6;
+        boolean expectedResult = false;
+        boolean actualResult = bai5Method.checkFibonacci(6);
+        Assert.assertFalse(actualResult);
     }
 
 
-    public static int fibonacci(int value) {
-        int fibonacci1 = 0;
-        int fibonacci2 = 1;
-        int fibo = 0;
-        if (value < 0) {
-            return -1;
-        }
-        if (value < 2) {
-            return 1;
-        }
-        int i = 2;
-        while (i < value) {
-            fibo = fibonacci1 + fibonacci2;
-            fibonacci1 = fibonacci2;
-            fibonacci2 = fibo;
-            i++;
-        }
-        return fibo;
-    }
-
-    public static boolean checkFibonacci(int value) {
-
-        int i = 0;
-        while (fibonacci(i) <= value) {
-            if (fibonacci(i) > value) {
-                return false;
-            }
-            if (fibonacci(i) == value) {
-                return true;
-            }
-            i++;
-        }
-        return false;
-    }
 }
