@@ -1,11 +1,10 @@
 package org.buoi2;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
 
 import java.util.Scanner;
+
+import static org.junit.Assert.*;
 
 /**
  * Unit test for simple App.
@@ -14,19 +13,21 @@ public class Bai2 {
     /**
      * Rigorous Test :-)
      */
+    Bai2Method bai2Method = new Bai2Method();
+
     @Test
-    public void shouldAnswerWithTrue() {
+    public void happyCase() {
         int soNguyenTo = 3;
-        assertEquals(true, checkPrime(soNguyenTo));
+        boolean actualResult = bai2Method.checkPrime(soNguyenTo);
+        assertTrue(actualResult);
     }
 
-    public static boolean checkPrime(int n) {
-        int max = n / 2;
-        for (int i = 1; i < max; i++) {
-            if (n % i == 0) {
-                return false;
-            }
-        }
-        return true;
+    @Test
+    public void exceptionCase() {
+        int soNguyenTo = 4;
+        boolean actualResult = bai2Method.checkPrime(soNguyenTo);
+        assertFalse(actualResult);
     }
+
+
 }

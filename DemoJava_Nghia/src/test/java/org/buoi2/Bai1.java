@@ -14,21 +14,21 @@ public class Bai1 {
     /**
      * Rigorous Test :-)
      */
+    Bai1Method bai1Method = new Bai1Method();
+
     @Test
-    public void shouldAnswerWithTrue() {
-        int Mang[] = {1, 2, 3, 4, 4, 3, 3, 2, 1};
-        int soLanXuatHienSo3 = 3;
-        assertEquals(soLanXuatHienSo3, countForNumber(Mang, 3));
+    public void happyCase() {
+        int listInteger[] = {1, 2, 3, 4, 4, 3, 3, 2, 1};
+        int expectedResult = 3;
+        int actualResult = bai1Method.countForNumber(listInteger, 3);
+        assertEquals(actualResult, expectedResult);
     }
 
-
-    public static int countForNumber(int B[], int n) {
-        int count = 0;
-        for (int i = 0; i < B.length; i++) {
-            if (B[i] == n) {
-                count++;
-            }
-        }
-        return count;
+    @Test
+    public void exceptionCase() {
+        int Mang[] = {4, 6, 8, 10, 12, 14, 15};
+        int expectedResult = 0;
+        int actualResult = bai1Method.countForNumber(Mang, 3);
+        assertEquals(actualResult, expectedResult);
     }
 }
