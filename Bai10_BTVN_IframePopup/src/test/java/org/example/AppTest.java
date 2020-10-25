@@ -1,8 +1,10 @@
 package org.example;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -32,16 +34,16 @@ public class AppTest {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         this.webDriver = new ChromeDriver();
         this.webDriver.get("https://www.fido.ca/pages/#/easylogin/main");
-//        WebDriverWait wait = new WebDriverWait(webDriver, 15);
-//        WebElement popupFirst = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("desktop windows chrome ver- modal-open xs portrait narrow"))); //webDriver.findElement(By.cssSelector("div.fade"));
         this.webDriver.manage().timeouts().implicitlyWait(6000, TimeUnit.SECONDS);
+        this.webDriver.manage().window().maximize();
+        openPageSignIn();
+    }
+
+    public void openPageSignIn() {
         Set<String> lstHander = this.webDriver.getWindowHandles();
         for (String handle : lstHander) {
             this.webDriver.switchTo().window(handle);
         }
-
-        //System.out.println(popupFirst.getTagName());
-        //WebElement Xicon = popupFirst.findElement(By.cssSelector("span.ute-icon-circle-x"));
         WebElement Xicon = webDriver.findElement(By.cssSelector("span.ute-icon-circle-x"));
         System.out.println(Xicon.isDisplayed());
         Xicon.click();
@@ -52,26 +54,45 @@ public class AppTest {
         Boolean popupFirst = wait.until(ExpectedConditions.invisibilityOf(Xicon)); //webDriver.findElement(By.cssSelector("div.fade"));
         WebElement linkSignIn = webDriver.findElement(By.cssSelector("li.stateActive span.acs-brdr"));
         linkSignIn.click();
-        Thread.sleep(5000);
-        Set<String> lstHander2 = this.webDriver.getWindowHandles();
-        for (String handle2 : lstHander2) {
-            this.webDriver.switchTo().window(handle2);
-        }
-        WebElement username = webDriver.findElement(By.name("email"));
-        username.sendKeys("nghiad12cn4@gmail.com");
-        WebElement password = webDriver.findElement(By.name("password"));
-        password.sendKeys("leducnghia");
-        WebElement showicon = webDriver.findElement(By.cssSelector("button[title=\"Show password entered\"]"));
-        showicon.click();
-        System.out.println(password.getText());
-        //WebElement loginButton = webDriver.findElement(By.cssSelector("button.state-btn"));
+    }
 
-        //webDriver.quit();
+
+    @Test
+    public void openPopupCheckActive() {
+        this.webDriver.switchTo().frame(webDriver.findElement(By.cssSelector("iframe[src=\"/pages/easylogin-fido/signin/en/\"]")));
+        WebElement tbUserName = this.webDriver.findElement(By.id("username"));
+        WebElement tbPassword = this.webDriver.findElement(By.id("password"));
+        WebElement buttonLogin = this.webDriver.findElement(By.cssSelector("button.state-btn"));
+        WebElement focusUsername = this.webDriver.switchTo().activeElement();
+        Assert.assertEquals(tbUserName, focusUsername);
     }
 
     @Test
-    public void shouldAnswerWithTrue() {
+    public void activeLeaveBlankUserPass() {
+        this.webDriver.switchTo().frame(webDriver.findElement(By.cssSelector("iframe[src=\"/pages/easylogin-fido/signin/en/\"]")));
+        WebElement tbUserName = this.webDriver.findElement(By.id("username"));
+        WebElement tbPassword = this.webDriver.findElement(By.id("password"));
+        WebElement buttonLogin = this.webDriver.findElement(By.cssSelector("button.state-btn"));
+        tbUserName.sendKeys("");
+        tbPassword.sendKeys("");
+        buttonLogin.click();
+        WebElement focusUsername = this.webDriver.switchTo().activeElement();
+        Assert.assertEquals(tbUserName, focusUsername);
+    }
 
+    @Test
+    public void showPassword() throws InterruptedException {
+        this.webDriver.switchTo().frame(webDriver.findElement(By.cssSelector("iframe[src=\"/pages/easylogin-fido/signin/en/\"]")));
+        WebElement tbUserName = this.webDriver.findElement(By.id("username"));
+        WebElement tbPassword = this.webDriver.findElement(By.id("password"));
+        WebElement buttonLogin = this.webDriver.findElement(By.cssSelector("button.state-btn"));
+        WebElement buttonShowPass = this.webDriver.findElement(By.cssSelector("button[title=\"Show password entered\"]"));
+        tbUserName.sendKeys("nghiad12cn4@gmail.com");
+        tbPassword.sendKeys("nghia989899");
+        buttonShowPass.click();
+        String actualPassword = "nghia989899";
+        String passWordExpected = tbPassword.getAttribute("value");
+        assertEquals(passWordExpected, actualPassword);
     }
 
     @After
