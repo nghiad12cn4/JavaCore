@@ -40,16 +40,9 @@ public class AppTest {
     }
 
     public void openPageSignIn() {
-        Set<String> lstHander = this.webDriver.getWindowHandles();
-        for (String handle : lstHander) {
-            this.webDriver.switchTo().window(handle);
-        }
         WebElement Xicon = webDriver.findElement(By.cssSelector("span.ute-icon-circle-x"));
         System.out.println(Xicon.isDisplayed());
         Xicon.click();
-        Actions action = new Actions(webDriver);
-        action.moveToElement(Xicon);
-        action.click(Xicon);
         WebDriverWait wait = new WebDriverWait(webDriver, 15);
         Boolean popupFirst = wait.until(ExpectedConditions.invisibilityOf(Xicon)); //webDriver.findElement(By.cssSelector("div.fade"));
         WebElement linkSignIn = webDriver.findElement(By.cssSelector("li.stateActive span.acs-brdr"));
