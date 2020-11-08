@@ -16,7 +16,6 @@ public class Hooks {
 
     @Before
     public void initTest() {
-        System.out.println("Before");
         System.setProperty("webdriver.chrome.driver", "src/test/resources/driver/chromedriver.exe");
         this.driver = new ChromeDriver();
         this.driver.manage().window().maximize();
@@ -24,7 +23,7 @@ public class Hooks {
     }
 
     @After
-    public void AfterTest(Scenario scenario) {
+    public void AfterTest() {
         this.driver.quit();
     }
 }
