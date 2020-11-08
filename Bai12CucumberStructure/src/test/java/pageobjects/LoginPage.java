@@ -36,7 +36,6 @@ public class LoginPage {
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
-        //PageFactory.initElements(driver, this);// phai lam o ham openLoginPage vi khi day moi coc Page truyen vao
     }
 
     public void openLoginPage() {
@@ -52,11 +51,6 @@ public class LoginPage {
     public void inputPassword(String password) {
         txtPassword.sendKeys(password);
     }
-
-//    public List setListSuggestMail() {
-//        this.listSuggestMail = this.driver.findElements(By.cssSelector("label.login-email ul.list li"));
-//    }
-
 
     public List<WebElement> getListSuggestMail() {
         WebDriverWait wait = new WebDriverWait(this.driver, 5000);
