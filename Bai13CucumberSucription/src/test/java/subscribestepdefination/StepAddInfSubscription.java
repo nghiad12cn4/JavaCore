@@ -124,7 +124,7 @@ public class StepAddInfSubscription {
 
     @Then("^The popup \"([^\"]*)\" is shown$")
     public void the_popup_something_is_shown(String expectedResult) throws Throwable {
-        String actualResult = "Bạn đã đăng ký nhận bản tin thành công. Hãy kiểm tra Email để xác nhận việc đăng ký";
+        String actualResult = this.subScription.getDivEmailExisted().getText();
         Assert.assertEquals(expectedResult, actualResult);
 
     }
