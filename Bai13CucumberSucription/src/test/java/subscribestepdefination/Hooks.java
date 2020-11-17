@@ -24,7 +24,7 @@ public class Hooks {
             final byte[] screenshot = ((TakesScreenshot) this.webDriver).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot, "image/png", "error");
         }
-        this.webDriver.quit();
+//        this.webDriver.quit();
     }
 }
 
