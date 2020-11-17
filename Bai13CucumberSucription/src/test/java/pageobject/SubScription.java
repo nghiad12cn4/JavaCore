@@ -46,6 +46,7 @@ public class SubScription {
     public void openSubcribeExtra() {
         webDriver.get("http://testmaster.vn/");
         this.webDriver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+        System.out.println("Init Element");
         PageFactory.initElements(webDriver, this);
 
     }
@@ -80,10 +81,10 @@ public class SubScription {
         this.currentTypeReceiveMail = webDriver.findElement(By.cssSelector("button#ddlNewsType span.content-display"));
     }
 
-    public void setTxtAESHoVaTenMessege() {
+    public WebElement getTxtAESHoVaTenMessege() {
         WebDriverWait wait = new WebDriverWait(this.webDriver, 3);
-        WebElement txtAESHoVaTenMessege = wait.until(ExpectedConditions.visibilityOf(this.webDriver.findElement(By.cssSelector("div.popover-body div.error"))));
-        this.txtAESHoVaTenMessege = txtAESHoVaTenMessege;
+        txtAESHoVaTenMessege = wait.until(ExpectedConditions.visibilityOf(this.webDriver.findElement(By.cssSelector("div.popover-body div.error"))));
+        return txtAESHoVaTenMessege;
     }
 }
 
