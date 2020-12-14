@@ -12,6 +12,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -30,8 +31,8 @@ public class AppTest {
      */
     @Before
     public void inIt() {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/Webdrivers/chromedriver.exe");
-        this.driver = new ChromeDriver();
+        System.setProperty("webdriver.gecko.driver", "src/test/resources/Webdrivers/geckodriver.exe");
+        this.driver = new FirefoxDriver();
         this.driver.get("https://www.lazada.vn/");
         this.loginPage = new LoginPage(this.driver);
         this.driver.manage().window().maximize();
@@ -51,6 +52,8 @@ public class AppTest {
         JavascriptExecutor je = (JavascriptExecutor) driver;
         this.loginPage.dayDropdownList.click();
         WebElement element31 = driver.findElement(By.cssSelector("ul.next-menu-content li[value='31']"));
+        //Hoi anh khanh, co cach nao locator Element nay khi hidden khong
+        //Vi show locator roi thi lam cach binh thuong van ok
         je.executeScript("arguments[0].scrollIntoView(true);", element31);
         je.executeScript("arguments[0].click();", element31);
     }
