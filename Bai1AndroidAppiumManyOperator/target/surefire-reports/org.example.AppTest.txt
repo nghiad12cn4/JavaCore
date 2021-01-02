@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: org.example.AppTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 37.022 s <<< FAILURE! - in org.example.AppTest
+shouldAnswerWithTrue(org.example.AppTest)  Time elapsed: 36.95 s  <<< ERROR!
+org.openqa.selenium.NoSuchElementException: 
+An element could not be located on the page using the given search parameters.
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-7455GIJ', ip: '192.168.1.8', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_261'
+Driver info: io.appium.java_client.AppiumDriver
+Capabilities {app: C:\Users\nghia\Desktop\Calc..., appPackage: com.google.android.calculator, databaseEnabled: false, desired: {app: C:\Users\nghia\Desktop\Calc..., deviceName: H3AKGV920069PWZ, platformName: android, platformVersion: 6.0.1}, deviceApiLevel: 23, deviceManufacturer: asus, deviceModel: ASUS_A007, deviceName: H3AKGV920069PWZ, deviceScreenDensity: 320, deviceScreenSize: 720x1280, deviceUDID: H3AKGV920069PWZ, javascriptEnabled: true, locationContextEnabled: false, networkConnectionEnabled: true, pixelRatio: 2, platform: LINUX, platformName: Android, platformVersion: 6.0.1, statBarHeight: 48, takesScreenshot: true, viewportRect: {height: 1232, left: 0, top: 48, width: 720}, warnings: {}, webStorageEnabled: false}
+Session ID: d0217496-0f33-47f5-896a-bea599e4cc8a
+*** Element info: {Using=id, value=com.google.android.calculator:id/op_mul }
+	at org.example.AppTest.shouldAnswerWithTrue(AppTest.java:53)
+
